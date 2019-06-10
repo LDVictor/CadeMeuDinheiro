@@ -27,6 +27,10 @@
           <strong>Valor:</strong> R$ {{formataValor(divida.valor)}}</h2>
       </ion-item>
       <ion-item>
+        <ion-icon name="cash" color="corDivida" item-start></ion-icon>
+        <h2><strong>Valor Parcial Pago:</strong> R$ {{formataValor(divida.valorParcial)}}</h2>
+      </ion-item>
+      <ion-item>
         <ion-icon name="calendar" color="corDivida" item-start></ion-icon>
         <h2>
           <strong>Data:</strong> {{getTextoData()}}</h2>
@@ -79,7 +83,7 @@
 
   <ion-row>
     <ion-col width-50 style="text-align: center">
-      <button padding icon-start ion-button round color="corPrimaria" (click)="pagaDivida(divida)">
+      <button *ngIf="!dividaLocal" padding icon-start ion-button round color="corPrimaria" (click)="modalPagarDivida(divida)">
         <ion-icon name="card"></ion-icon>
         Pagar dívida
       </button>

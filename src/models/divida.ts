@@ -12,6 +12,7 @@ export class Divida {
     usuarioDevedor: string;
     nomeUsuarioDevedor: string;
     valor: number;
+    valorParcial: number;
     fotosrc: string;
     aberta: boolean;
     acordos: Acordo[];

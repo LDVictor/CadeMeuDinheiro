@@ -1,0 +1,27 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Pagar dívida com {{divida.nomeUsuarioEmprestador}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="cor-background">
+  <ion-card>
+    <ion-card-header color="corDivida">
+      Quanto deseja pagar?
+    </ion-card-header>
+    <ion-item>
+      <ion-icon name='cash' item-start color="corDivida"></ion-icon>
+      <ion-input type="text" name="money" placeholder="Valor" [brmasker]="{money: true, thousand: '.',  decimalCaracter: ',', len:11}" [(ngModel)]="parcial"></ion-input>
+    </ion-item>
+
+  </ion-card>
+
+  <ion-fab bottom right>
+    <button ion-fab (click)="pagaDivida(parcial)" color="corDivida">
+      <ion-icon name="checkmark"></ion-icon>
+    </button>
+  </ion-fab>
+
+</ion-content>

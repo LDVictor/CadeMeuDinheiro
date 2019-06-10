@@ -82,6 +82,7 @@ export class AdicionaEmprestimoPage {
     this.emprestimo.emailUsuarioEmprestador = this.usuario.email;
     this.emprestimo.data = this.data;
     this.emprestimo.usuarioCriador = this.usuario.username;
+    this.emprestimo.valorParcial = 0;
     this.emprestimoService.adicionaEmprestimoFB(this.emprestimo);
     this.navCtrl.pop();
     this.emprestimo.usuarioEmprestador == null ? this.abrirToast("Empréstimo adicionado.") : this.abrirToast("Empréstimo pendente enviado para usuário.");

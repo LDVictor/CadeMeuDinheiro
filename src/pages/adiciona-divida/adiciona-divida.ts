@@ -79,6 +79,7 @@ export class AdicionaDividaPage {
     this.divida.nomeUsuarioDevedor = this.usuario.nome;
     this.divida.emailUsuarioDevedor = this.usuario.email;
     this.divida.usuarioCriador = this.usuario.username;
+    this.divida.valorParcial = 0;
     this.dividaService.adicionaDividaFB(this.divida);
     this.navCtrl.pop();
     this.divida.usuarioEmprestador == null ? this.abrirToast("Dívida adicionada.") : this.abrirToast("Dívida pendente enviada para usuário.");

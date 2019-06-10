@@ -12,6 +12,7 @@ import { FinancaServiceProvider } from '../../providers/financa-service/financa-
 import { Financa } from '../../models/financa';
 import { AuthProvider } from '../../providers/auth/auth';
 import { Verificacao } from '../../models/VerificacaoEnum';
+import { PagaDividaPage } from '../paga-divida/paga-divida';
 
 @IonicPage()
 @Component({
@@ -152,6 +153,10 @@ export class MostraDividaPage {
 
   modalEditaDivida(divida: Divida) {
     this.navCtrl.push(EditaDividaPage, divida);
+  }
+
+  modalPagarDivida(divida: Divida) {
+    this.navCtrl.push(PagaDividaPage, divida);
   }
 
   getData(divida: Divida) {

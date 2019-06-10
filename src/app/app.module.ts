@@ -72,6 +72,7 @@ import { AdicionaDinheiroPageModule } from '../pages/adiciona-dinheiro/adiciona-
 import { RealizaPagamentoPageModule } from '../pages/realiza-pagamento/realiza-pagamento.module';
 import { ComponentsModule } from '../components/components.module';
 import { RetiraDinheiroPageModule } from '../pages/retira-dinheiro/retira-dinheiro.module';
+import { PagaDividaPage } from '../pages/paga-divida/paga-divida';
 
 @NgModule({
   declarations: [
@@ -96,7 +97,8 @@ import { RetiraDinheiroPageModule } from '../pages/retira-dinheiro/retira-dinhei
     LoginCadastroPage,
     EditaPerfilPage,
     DetalhesAmigosPage,
-    ChatRoomPage
+    ChatRoomPage,
+    PagaDividaPage
     ],
   imports: [
     BrowserModule,
@@ -129,6 +131,7 @@ import { RetiraDinheiroPageModule } from '../pages/retira-dinheiro/retira-dinhei
     IonicPageModule.forChild(EditaPagamentoPage),
     IonicPageModule.forChild(DetalhesAmigosPage),
     IonicPageModule.forChild(ChatRoomPage),
+    IonicPageModule.forChild(PagaDividaPage),
     AdicionaDinheiroPageModule,
     RetiraDinheiroPageModule,
     RealizaPagamentoPageModule,
@@ -148,7 +151,8 @@ import { RetiraDinheiroPageModule } from '../pages/retira-dinheiro/retira-dinhei
     LoginCadastroPage,
     EditaPerfilPage,
     DetalhesAmigosPage,
-    BrMaskerModule
+    BrMaskerModule,
+    PagaDividaPage
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ],
   bootstrap: [IonicApp],
