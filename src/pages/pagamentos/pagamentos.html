@@ -1,0 +1,99 @@
+<ion-header>
+  <ion-navbar color="corPrimaria">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Pagamentos</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="cor-background">
+
+<ion-list *ngIf="temPagamentosAtrasados()">
+  <ion-card>
+    <ion-card-header color="corMeta" class="item-text-wrap">
+      Lembretes de pagamentos prioritários
+    </ion-card-header>
+      <ion-item *ngFor="let pagamento of filtraPagamentosAtrasados(pagamentos)">
+          <hr>
+          <ion-item>
+          <h2>{{pagamento.nomeDoFiador}}</h2>
+          <div style="overflow: hidden;">
+            <p>{{pagamento.descricao}}</p>
+            <p>{{getTextoData(pagamento)}}</p>
+            <p class="totalDebito">R$ {{formataValor(pagamento.valor)}}</p>
+          </div>
+          <ion-item *ngIf="existeFoto(pagamento)">
+            <img (click)="abreFoto(pagamento.imagem)" [src]="pagamento.imagem">
+          </ion-item>
+        <button ion-button color="corEmprestimo" large clear item-end (click)="modalEditaPagamento(pagamento)">
+          <ion-icon name="create"></ion-icon>
+        </button>
+        <button ion-button color="corDivida" large clear item-end (click)="removePagamento(pagamento)">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+        <button ion-button color="corPrimaria" large clear item-end (click)="fechaPagamento(pagamento)">
+            <ion-icon name="checkmark"></ion-icon>
+          </button>
+        </ion-item>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+
+  <ion-list>
+      <ion-card>
+        <ion-card-header color="corPrimaria" class="item-text-wrap">
+          Meus lembretes de pagamentos
+        </ion-card-header>
+        <ion-item *ngIf="!existePagamento()">
+            <p style="white-space: normal;" text-center>Não há nenhum pagamento registrado.</p>
+          </ion-item>
+          <ion-item *ngFor="let pagamento of filtraPagamentos(pagamentos)">
+              <hr>
+              <ion-item>
+              <h2>{{pagamento.nomeDoFiador}}</h2>
+              <div style="overflow: hidden;">
+                <p>{{pagamento.descricao}}</p>
+                <p>{{getTextoData(pagamento)}}</p>
+                <p class="totalDebito">R$ {{formataValor(pagamento.valor)}}</p>
+              </div>
+              <ion-item *ngIf="existeFoto(pagamento)">
+                <img (click)="abreFoto(pagamento.imagem)" [src]="pagamento.imagem">
+              </ion-item>
+            <button ion-button color="corEmprestimo" large clear item-end (click)="modalEditaPagamento(pagamento)">
+              <ion-icon name="create"></ion-icon>
+            </button>
+            <button ion-button color="corDivida" large clear item-end (click)="removePagamento(pagamento)">
+              <ion-icon name="trash"></ion-icon>
+            </button>
+            <button ion-button color="corPrimaria" large clear item-end (click)="fechaPagamento(pagamento)">
+                <ion-icon name="checkmark"></ion-icon>
+              </button>
+          </ion-item>
+          </ion-item>
+        </ion-card>
+      </ion-list>
+
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <ion-fab bottom right #fab>
+    <button ion-fab color="corPrimaria">
+      <ion-icon name="add"></ion-icon>
+    </button>
+    <ion-fab-list side="top">
+        <button ion-fab (click)="modalAdicionaPagamento()" color="corPrimaria">
+          <ion-icon name="add" color="light"></ion-icon>
+          <ion-label>Registrar lembrete de pagamento</ion-label>
+        </button>
+        <button ion-fab (click)="modalRealizaPagamento()" color="corPrimaria">
+          <ion-icon name="cash" color="light"></ion-icon>
+          <ion-label>Realizar pagamento</ion-label>
+        </button>
+  </ion-fab-list>
+
+  </ion-fab>
+
+</ion-content>

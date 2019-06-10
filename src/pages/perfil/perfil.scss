@@ -1,0 +1,64 @@
+page-perfil {
+
+    .thumbnail-wrapper {
+        display:inline-block;
+        position:relative;
+    }
+    .thumbnail-wrapper button {
+        position:absolute;
+        top:75%;
+        left:85%;
+        -webkit-transform:translate3d(-50%, -50%, 0);
+        -moz-transform:translate3d(-50%, -50%, 0);
+        transform:translate3d(-50%, -50%, 0);
+    }
+    
+        .posicao_icone {
+            font-size: 27px;
+        }
+    
+        .posicao_item {
+            margin-left: -15px;
+        }
+    
+        .ampliando_icone{
+            font-size: 1500%;
+        }
+    
+        .nome {
+            text-align: center;
+            font-weight: bold;
+        }
+    
+        .font_item{
+            font-style: italic;
+            font-family: inherit;
+        }
+    
+        .image_circle {
+            border-radius: 50%;
+            height: 200px;
+            width: 200px;
+            object-fit: cover;
+        }
+        .corBackground {
+            color: darkblue;
+        }
+
+        .nomeUsarname{
+            font-size: 1.5rem;
+            margin-left: 10px;
+            color: black
+        }
+
+        .infoProfissao{
+            font-size: 1.5rem;
+            margin-left: 10px;
+            color: black
+        }
+        .infoSalario{
+            font-size: 1.5rem;
+            margin-left: 10px;
+            color: black           
+        }
+}

@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar color="corPrimaria">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{this.amigo.username}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="cor-background" #content padding id="chatPage">
+
+  <ion-list>
+
+    <ion-item *ngFor="let chat of chats" class="chat" text-wrap 
+      [ngClass]="{'chat-partner' : isChatPartner(chat.sender)}">
+      {{ chat.message }}
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="corChat">
+		<form (ngSubmit)="addChat()">
+			<ion-row>
+				<ion-col col-9>
+					<ion-input type="text" [(ngModel)]="message" placeholder="Escreva algo..." name="message">
+					</ion-input>
+				</ion-col>
+				<ion-col col-3>
+					<button ion-button outline block color="corChatEnviar" type="submit">Enviar</button>
+				</ion-col>
+			</ion-row>
+		</form>
+  </ion-toolbar>
+</ion-footer>

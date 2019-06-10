@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar color="corPrimaria">
+    <ion-title>Realizar pagamento</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="cor-background">      
+  <ion-card>
+    <ion-card-header color="corPrimaria">
+      Informações
+    </ion-card-header>
+
+    <ion-item>
+        <ion-icon name='barcode' item-start color="corPrimaria"></ion-icon>
+        <ion-input type="text" [(ngModel)]="codigoDeBarras" placeholder="Código de barras"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="codigoVazio">
+        <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+        <p class="erro">Digite o código de barras.</p>
+      </ion-item>
+      <ion-item *ngIf="codigoInvalido">
+        <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+        <p class="erro">Digite um código de barras válido.</p>
+      </ion-item>
+
+    <ion-item>
+      <ion-icon name='clipboard' item-start color="corPrimaria"></ion-icon>
+      <ion-input type="text" [(ngModel)]="descricao" placeholder="Descrição (opcional)"></ion-input>
+    </ion-item>
+
+  <ion-fab bottom right>
+    <button ion-fab (click)="realizaPagamento()" color="corPrimaria">
+      <ion-icon name="checkmark"></ion-icon>
+    </button>
+  </ion-fab>
+  </ion-card>
+
+</ion-content>

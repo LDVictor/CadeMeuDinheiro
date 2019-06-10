@@ -1,0 +1,79 @@
+<ion-header>
+    <ion-navbar color="corPrimaria">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Amigos</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+
+<ion-content class="cor-background">
+
+  <ion-list *ngIf="existeSolicitacoesPendentes()">
+    <ion-card>
+      <ion-card-header color="corSolicitacaoPendente">
+        Soliticações de amizade pendentes
+      </ion-card-header>
+      <ion-card-content style="padding:0%;">
+        <ion-card *ngFor="let usuario of amigosPendentes">
+          <ion-card-content style="padding:0%;">
+            <ion-item>
+              <ion-avatar item-start>
+                <img [src]="retornaFoto(usuario)">
+              </ion-avatar>
+              <h2>{{usuario.username}}</h2>
+            </ion-item>
+            <ion-row>
+              <ion-col text-center *ngIf="podeAceitarSolicitacao(usuario)">
+                <button ion-button icon-only icon-start clear color="corSolicitacaoPendente" (click)="aceitaSolicitacao(usuario)">
+                  <ion-icon name="checkmark" color="corPrimaria"></ion-icon>
+                  Confirmar
+                </button>
+              </ion-col>
+              <ion-col text-center *ngIf="podeAceitarSolicitacao(usuario)">
+                <button ion-button icon-only icon-start clear color="corSolicitacaoPendente" (click)="rejeitaSolicitacao(usuario)">
+                  <ion-icon name="close" color="corDivida"></ion-icon>
+                  Rejeitar
+                </button>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+  <ion-list>
+    <ion-card>
+      <ion-card-header color="corAmigos">
+        Meus amigos
+        <p *ngIf="existeAmigos()"></p>
+      </ion-card-header>
+
+      <ion-item *ngIf="!existeAmigos()">
+        <p style="white-space: normal;" text-center>Você não possui nenhum amigo adicionado.</p>
+      </ion-item>
+
+      <ion-item *ngFor="let usuario of amigos">
+        <div id="nome" item-start></div>
+        <ion-avatar item-start>
+          <img [src]="retornaFoto(usuario)">
+        </ion-avatar>
+        <h2>{{usuario.nome}}</h2>
+        <p>{{usuario.username}}</p>
+        <button ion-button color="corAmigos" clear item-end (click)="modalEstatisticasAmigo(usuario)">Detalhes</button>
+        <button ion-button color="corAmigos" clear item-end (click)="conversar(usuario)">
+          <ion-icon name="chatboxes" color="corAmigos"></ion-icon>
+        </button>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+
+  <ion-fab bottom right>
+      <button ion-fab (click)="modalAdicionaAmigo()" color="corAmigos">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-fab>
+
+</ion-content>

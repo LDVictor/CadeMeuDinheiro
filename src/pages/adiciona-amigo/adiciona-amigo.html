@@ -1,0 +1,30 @@
+<ion-header>
+    <ion-navbar color="corAmigo">
+      <ion-title>Novo amigo</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  
+  <ion-content class="cor-background">
+    <ion-card>
+      <ion-card-header color="corAmigo">
+        Informações
+      </ion-card-header>
+      <ion-item>
+        <ion-icon name='clipboard' item-start color="corAmigo"></ion-icon>
+        <ion-input type="text" [(ngModel)]="nomeUsuario" placeholder="Nome de Usuario"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="nomeVazio">
+        <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+        <p class="erro">Digite o nome de usuário.</p>
+      </ion-item>
+  
+    </ion-card>
+  
+    <ion-fab bottom right>
+      <button ion-fab (click)="adicionaAmigo()" color="corAmigo">
+        <ion-icon name="checkmark"></ion-icon>
+      </button>
+    </ion-fab>
+  
+  </ion-content>

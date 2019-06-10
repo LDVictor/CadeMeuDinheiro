@@ -1,0 +1,65 @@
+<ion-header>
+    <ion-navbar color="corPrimaria">
+      <ion-title>Editar Pagamento</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  
+  <ion-content class="cor-background">      
+    <ion-card>
+      <ion-card-header color="corPrimaria">
+        Informações
+      </ion-card-header>
+
+      <ion-item>
+          <ion-icon name='person' item-start color="corPrimaria"></ion-icon>
+          <ion-input type="text" [(ngModel)]="pagamento.nomeDoFiador" placeholder="Nome do fiador"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="nomeVazio">
+          <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+          <p class="erro">Digite o nome do fiador.</p>
+        </ion-item>
+
+      <ion-item>
+        <ion-icon name='clipboard' item-start color="corPrimaria"></ion-icon>
+        <ion-input type="text" [(ngModel)]="pagamento.descricao" placeholder="Descrição"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="descricaoVazia">
+        <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+        <p class="erro">Digite a descrição.</p>
+      </ion-item>
+  
+      <ion-item>
+        <ion-icon name='cash' item-start color="corPrimaria"></ion-icon>
+        <ion-input type="text" name="money" placeholder="Valor" 
+          [brmasker]="{money: true, thousand: '.',  decimalCaracter: ',', len: 11}" 
+          [(ngModel)]="pagamento.valor"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="valorInvalido">
+        <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+        <p class="erro">O valor deverá ser maior que zero.</p>
+      </ion-item>
+      <ion-item *ngIf="valorVazio">
+        <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+        <p class="erro">Digite o valor.</p>
+      </ion-item>
+  
+      <ion-item>
+        <ion-icon name='calendar' item-start color="corPrimaria"></ion-icon>
+        <ion-datetime placeholder="Data" cancelText="Cancelar" doneText="Ok"
+          min="2017" max="2020" displayFormat="DD/MM/YYYY" [(ngModel)]="pagamento.data">
+        </ion-datetime>
+      </ion-item>
+      <ion-item *ngIf="dataVazia">
+        <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+        <p class="erro">Selecione a data.</p>
+      </ion-item>
+      </ion-card>
+  
+    <ion-fab bottom right>
+      <button ion-fab (click)="editaPagamento()" color="corPrimaria">
+        <ion-icon name="checkmark"></ion-icon>
+      </button>
+    </ion-fab>
+  
+  </ion-content>

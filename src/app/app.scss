@@ -1,0 +1,140 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+.corPrimaria{
+      background-color:green;
+}
+
+.backgroundEmprestimo {
+      background-color: darkblue;
+}
+
+.backgroundDivida {
+      background-color: red;
+}
+
+.corEmprestimo {
+      color: blue;
+}
+
+.corEmprestimoPendente {
+      color: darkblue;
+}
+
+.corDividaPendente {
+      color: darkred;
+}
+
+.corDivida {
+      color: red;
+}
+
+.corEmprestimo{
+      background-color: blue;
+}
+
+.corMeta {
+      color: orange;
+}
+
+.cor-background{
+      background-color: #fafafa;
+}
+
+.card-header-md {
+      font-size: 1.8rem;
+      font-weight: 600;
+}
+
+.label-md {
+      margin: 13px 8px 13px;
+}
+
+.toolbar-background-md {
+      background: green;
+}
+
+.toolbar-title-md {
+      color: white;
+}
+
+.card-md {
+      border-radius: 12px;
+}
+
+.corSecundaria{
+      color:grey;
+}
+
+
+.corPrimaria{
+      color:green;
+}
+
+.precoEmprestimo {
+    padding-left: 5px;
+    color: darkblue;
+    font-weight: 500;
+}
+
+.precoDivida {
+    padding-left: 5px;
+    color: red;
+    font-weight: 500;
+}
+
+.corSecundaria{
+      background-color:grey;
+}
+
+ion-select{
+      width: 100%;
+      max-width: 100%;
+      padding: 13px 8px 13px !important;
+}
+
+ion-datetime{
+      width: 100%;
+      max-width: 100%;
+      padding: 13px 8px 13px !important;
+}
+
+button[ion-fab] {
+      overflow: visible;
+      position: relative;
+
+      ion-label {
+          position: absolute;
+          top: -8px;
+          right: 40px;
+          color: black;
+          background-color: rgba(255, 255, 255, 0.7);
+          line-height: 24px;
+          padding: 4px 8px;
+          border-radius: 12px;
+      }
+    }
+
+    .blur {
+      filter: blur(300px);
+      -webkit-filter: blur(300px);
+      transition: -webkit-filter 200ms linear;
+    }
+
+    .fab {
+      contain: layout;
+    }

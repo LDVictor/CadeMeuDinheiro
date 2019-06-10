@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-navbar color="corMeta">
+    <ion-title>Nova meta</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="cor-background">
+  <ion-card>  
+    <ion-list>
+        <ion-list-header color="corMeta">
+            Informações
+        </ion-list-header>
+      <ion-item>
+        <ion-label>Categorias</ion-label>
+        <ion-icon name="list-box" color="corMeta" item-start></ion-icon>
+        <ion-select placeholder="Categoria" [(ngModel)]="meta.categoria">
+          <ion-option value="alimentacao">Alimentação</ion-option>
+          <ion-option value="vestuario">Vestuário</ion-option>
+          <ion-option value="entretenimento">Entretenimento</ion-option>
+          <ion-option value="bebida">Bebida</ion-option>
+          <ion-option value="supermercado">Supermercado</ion-option>
+          <ion-option value="transporte">Transporte</ion-option>
+          <ion-option value="eletronicos">Eletrônicos</ion-option>
+          <ion-option value="outros">Outros</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <ion-item>
+      <ion-icon name='cash' item-start color="corMeta"></ion-icon>
+      <ion-input type="text" name="money" placeholder="Limite de gasto" 
+      [brmasker]="{money: true, thousand: '.',  decimalCaracter: ',', len: 11}" 
+      [(ngModel)]="meta.limite"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="limiteInvalido">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">O limite deverá ser maior que zero.</p>
+    </ion-item>
+    <ion-item *ngIf="limiteVazio">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Digite o limite.</p>
+    </ion-item>
+
+  </ion-card>
+
+  <ion-fab bottom right>
+    <button ion-fab (click)="adicionaMeta()" color="corMeta">
+      <ion-icon name="checkmark"></ion-icon>
+    </button>
+  </ion-fab>
+
+</ion-content>

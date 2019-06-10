@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar color="corPrimaria">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Editar Perfil</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="cor-background">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+      </ion-col>
+      <ion-col col-9 text-center>
+        <img class="image_circle" [src]="fotosrc">
+    </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+    <br>
+    <br>
+  <ion-item>
+    <ion-icon name='person' item-start color="green"></ion-icon>
+    <ion-input type="text" [(ngModel)]="usuario.nome" placeholder="Nome"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="nomeVazio">
+    <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+    <p class="erro">Digite o seu novo nome.</p>
+  </ion-item>
+  <ion-item>
+      <ion-icon name='briefcase' item-start color="green"></ion-icon>
+      <ion-input type="text" [(ngModel)]="usuario.profissao" placeholder="Profissão"></ion-input>
+  </ion-item>
+  <ion-item>
+      <ion-icon name='logo-usd' item-start color="green"></ion-icon>
+      <ion-input type="text" name="money" placeholder="Salário" [brmasker]="{money: true, thousand: '.',  decimalCaracter: ',', len: 11}" [(ngModel)]="usuario.salario"></ion-input>
+  </ion-item>
+
+
+  <ion-fab bottom right>
+    <button ion-fab (click)="editaUsuario(usuario)" color="corPrimaria">
+      <ion-icon name="checkmark"></ion-icon>
+    </button>
+  </ion-fab>
+
+</ion-content>

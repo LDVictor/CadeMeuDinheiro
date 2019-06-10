@@ -1,0 +1,99 @@
+<ion-header>
+  <ion-navbar color="corDivida">
+    <ion-title>Dívida com {{divida.nomeUsuarioEmprestador}}</ion-title>
+    <ion-buttons *ngIf="ehCriador()" end>
+      <button ion-button (click)="deletaDivida(divida)" icon-only>
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="cor-background">
+  <ion-list>
+    <ion-card>
+      <ion-card-header color="corDivida">
+        Informações
+      </ion-card-header>
+
+      <ion-item *ngIf="!dividaLocal">
+        <ion-icon name="person" color="corDivida" item-start></ion-icon>
+        <h2>
+          <strong>Usuário: </strong> {{divida.usuarioEmprestador}}</h2>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="cash" color="corDivida" item-start></ion-icon>
+        <h2>
+          <strong>Valor:</strong> R$ {{formataValor(divida.valor)}}</h2>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="calendar" color="corDivida" item-start></ion-icon>
+        <h2>
+          <strong>Data:</strong> {{getTextoData()}}</h2>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="clipboard" color="corDivida" item-start></ion-icon>
+        <h2>
+          <strong>Descrição:</strong> {{divida.descricao}}</h2>
+      </ion-item>
+
+
+    </ion-card>
+  </ion-list>
+
+  <ion-list *ngIf="!dividaLocal">
+    <ion-card>
+
+      <ion-card-header color="corDivida">
+        Acordos
+      </ion-card-header>
+      <ion-item *ngIf="!existeAcordo()">
+        <p style="white-space: normal;" text-center>Nenhum acordo registrado.</p>
+      </ion-item>
+
+      <ion-item *ngFor="let acordo of divida.acordos">
+        <ion-icon name="chatboxes" color="corDivida" item-start></ion-icon>
+        <h2> <strong>Data: </strong>{{getTextoDataAcordo(acordo.data)}}</h2>
+        <h2> <strong>Hora: </strong>{{acordo.hora}}</h2>
+        <h2> <strong>Local: </strong>{{acordo.local}}</h2>
+        <h2> <strong>Descrição: </strong>{{acordo.descricao}}</h2>
+        <ion-icon name="create" color="corDivida" (click)="editarAcordo(acordo)" style="padding-right:  6%;" item-end></ion-icon>
+        <ion-icon name="checkmark" color="corDivida" (click)="fecharAcordo(acordo)" style="padding-right:  4%;"
+          item-end></ion-icon>
+      </ion-item>
+
+      <ion-row>
+        <ion-col width-50 style="text-align: center">
+          <button padding icon-start ion-button round color="corDivida" (click)="modalAdicionaAcordo()">
+            <ion-icon name="add"></ion-icon>
+            Adicionar acordo
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-list>
+
+
+
+
+
+  <ion-row>
+    <ion-col width-50 style="text-align: center">
+      <button padding icon-start ion-button round color="corPrimaria" (click)="pagaDivida(divida)">
+        <ion-icon name="card"></ion-icon>
+        Pagar dívida
+      </button>
+      <button padding icon-start ion-button round color="corPrimaria" (click)="fechaDivida(divida)">
+        <ion-icon name="checkmark"></ion-icon>
+        Fechar dívida
+      </button>
+    </ion-col>
+  </ion-row>
+
+
+  <ion-fab bottom right *ngIf="ehCriador()">
+    <button ion-fab color="corDivida" (click)="modalEditaDivida(divida)">
+      <ion-icon name="create"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

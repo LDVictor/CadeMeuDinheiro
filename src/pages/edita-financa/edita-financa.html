@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-navbar color="corPrimaria">
+    <ion-title>Editar finança</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="cor-background">
+    <ion-card>
+        <ion-card-header color="corPrimaria">
+          Tipo da finança
+        </ion-card-header>
+        <ion-list radio-group [(ngModel)]="tipoFinanca">
+            <ion-item>
+              <ion-icon name='pricetags' item-start color="corPrimaria"></ion-icon>
+              <ion-label>Débito</ion-label>
+              <ion-radio value="debito"></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-icon name='cash' item-start color="corPrimaria"></ion-icon>
+              <ion-label>Crédito</ion-label>
+              <ion-radio value="credito"></ion-radio>
+            </ion-item>
+          </ion-list>
+    </ion-card>
+        
+  <ion-card>
+    <ion-card-header color="corPrimaria">
+      Informações
+    </ion-card-header>
+    <ion-item>
+      <ion-icon name='clipboard' item-start color="corPrimaria"></ion-icon>
+      <ion-input type="text" [(ngModel)]="financa.descricao" placeholder="Descrição"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="descricaoVazia">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Digite a descrição.</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name='cash' item-start color="corPrimaria"></ion-icon>
+      <ion-input type="text" name="money" placeholder="Valor" 
+        [brmasker]="{money: true, thousand: '.',  decimalCaracter: ',', len: 11}" 
+        [(ngModel)]="financa.valor"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="valorInvalido">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">O valor deverá ser maior que zero.</p>
+    </ion-item>
+    <ion-item *ngIf="valorVazio">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Digite o valor.</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name='calendar' item-start color="corPrimaria"></ion-icon>
+      <ion-datetime placeholder="Data" cancelText="Cancelar" doneText="Ok"
+        min="2017" max="2020" displayFormat="DD/MM/YYYY" [(ngModel)]="financa.data">
+      </ion-datetime>
+    </ion-item>
+    <ion-item *ngIf="dataVazia">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Selecione a data.</p>
+    </ion-item>
+
+    <ion-list>
+      <ion-item>
+        <ion-icon name="list-box" color="corPrimaria" item-start></ion-icon>
+        <ion-select interface="popover" placeholder="Categoria" [(ngModel)]="financa.categoria">
+          <ion-option value="alimentacao">Alimentação</ion-option>
+          <ion-option value="vestuario">Vestuário</ion-option>
+          <ion-option value="entretenimento">Entretenimento</ion-option>
+          <ion-option value="bebida">Bebida</ion-option>
+          <ion-option value="supermercado">Supermercado</ion-option>
+          <ion-option value="transporte">Transporte</ion-option>
+          <ion-option value="eletronicos">Eletrônicos</ion-option>
+          <ion-option value="outros">Outros</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <ion-fab bottom right>
+    <button ion-fab (click)="editaFinanca()" color="corPrimaria">
+      <ion-icon name="checkmark"></ion-icon>
+    </button>
+  </ion-fab>
+
+</ion-content>

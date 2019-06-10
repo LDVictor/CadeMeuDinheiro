@@ -1,0 +1,163 @@
+<ion-header>
+  <ion-navbar color="corPrimaria">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Cadê Meu Dinheiro</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="cor-background">
+
+  <img padding src="assets/imgs/cmd.png">
+
+<div *ngIf="isCadastro == 0">
+  <ion-card>
+    <ion-card-header color="corPrimaria">
+      Login
+    </ion-card-header>
+
+    <ion-item>
+      <ion-icon name='mail' item-start color="corPrimaria"></ion-icon>
+      <ion-input type="text" placeholder="E-mail" [(ngModel)]="email"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="emailVazio">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Digite seu endereço de e-mail.</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name='key' item-start color="corPrimaria"></ion-icon>
+      <ion-input type="password" [(ngModel)]="senha" placeholder="Senha"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="senhaVazia">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Digite sua senha.</p>
+    </ion-item>
+
+  </ion-card>
+</div>
+
+<div *ngIf="isCadastro == 1">
+  <ion-card>
+    <ion-card-header color="corEmprestimo">
+      Cadastrar
+    </ion-card-header>
+
+    <ion-item>
+      <ion-icon name='person' item-start color="corEmprestimo"></ion-icon>
+      <ion-input type="text" placeholder="Nome" [(ngModel)]="nome"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="nomeVazio">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Digite seu nome.</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name='contact' item-start color="corEmprestimo"></ion-icon>
+      <ion-input type="text" placeholder="Usuário" [(ngModel)]="username"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="usernameVazio">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Digite seu nome de usuário.</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name='mail' item-start color="corEmprestimo"></ion-icon>
+      <ion-input type="text" placeholder="Email" [(ngModel)]="email"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="emailVazio">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Digite seu endereço de e-mail.</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name='key' item-start color="corEmprestimo"></ion-icon>
+      <ion-input type="password" [(ngModel)]="senha" placeholder="Senha"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="senhaVazia">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Digite sua senha.</p>
+    </ion-item>
+    <ion-item *ngIf="senhaInvalida">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">A senha deve conter no mínimo 6 caracteres.</p>
+    </ion-item>
+
+  </ion-card>
+  <ion-card>
+    <ion-card-header color="corEmprestimo">
+      Informações adicionais
+    </ion-card-header>
+
+    <ion-item>
+      <ion-icon name='briefcase' item-start color="corEmprestimo"></ion-icon>
+      <ion-input type="text" placeholder="Profissão" [(ngModel)]="profissao"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name='logo-usd' item-start color="corEmprestimo"></ion-icon>
+      <ion-input type="text" name="money" placeholder="Salário" [brmasker]="{money: true, thousand: '.',  decimalCaracter: ',', len: 11}" [(ngModel)]="salario"></ion-input>
+    </ion-item>
+
+  </ion-card>
+
+</div>
+
+<div *ngIf="isCadastro == 2">
+  <ion-card>
+    <ion-card-header color="corDivida">
+      Esqueci minha senha
+    </ion-card-header>
+
+    <ion-item>
+      <ion-icon name='mail' item-start color="corDivida"></ion-icon>
+      <ion-input type="text" placeholder="E-mail" [(ngModel)]="email"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="emailVazio">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Digite seu endereço de e-mail.</p>
+    </ion-item>
+  </ion-card>
+
+</div>
+
+<ion-row>
+  <ion-col width-50 style="text-align: center">
+    <button padding ion-button clear icon-start color="corEmprestimo" *ngIf="isCadastro == 0" (click)="loginOuCadastro('cadastro')">
+        <ion-icon color="corEmprestimo" name="send"></ion-icon>
+      Primeira vez no app? Registre-se!
+    </button>
+    <button padding ion-button clear icon-start color="corPrimaria" *ngIf="isCadastro == 1 || isCadastro == 2" (click)="loginOuCadastro('login')">
+      <ion-icon color="corPrimaria" name="arrow-dropleft"></ion-icon>
+      Voltar para login
+    </button>
+    <button padding ion-button clear icon-start color="corDivida" *ngIf="isCadastro == 0" (click)="loginOuCadastro('senha')">
+        <ion-icon color="corDivida" name="lock"></ion-icon>
+      Esqueci minha senha
+    </button>
+    </ion-col>
+</ion-row>
+
+
+<ion-fab *ngIf="isCadastro == 0" bottom right>
+  <button ion-fab (click)="realizaLogin()" color="corPrimaria">
+    <ion-icon name="log-in"></ion-icon>
+  </button>
+</ion-fab>
+
+
+<ion-fab *ngIf="isCadastro == 1" bottom right>
+  <button ion-fab (click)="realizaCadastro()" color="corEmprestimo">
+    <ion-icon name="arrow-dropright-circle"></ion-icon>
+  </button>
+</ion-fab>
+
+<ion-fab *ngIf="isCadastro == 2" bottom right>
+  <button ion-fab (click)="alterarSenha(email)" color="corDivida">
+    <ion-icon name="send"></ion-icon>
+  </button>
+</ion-fab>
+
+</ion-content>

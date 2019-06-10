@@ -1,0 +1,142 @@
+<ion-header>
+  <ion-navbar color="corPrimaria">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Dívidas e empréstimos</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="cor-background">
+
+  <ion-card *ngIf="existeEmprestimosPendentes()">
+    <ion-card-header color="corEmprestimoPendente">
+      Empréstimos Pendentes
+    </ion-card-header>
+    <ion-list *ngFor="let emprestimo of emprestimosPendentes">
+      <hr>
+      <ion-item>
+        <ion-avatar item-start>
+          <img [src]="retornaFoto('emprestimo', emprestimo)">
+        </ion-avatar>
+        <h2>{{emprestimo.nomeUsuarioDevedor}}</h2>
+        <p class="precoEmprestimo">R$ {{formataValor(emprestimo.valor)}}</p>
+        <button *ngIf="podeAnalisarEmprestimo(emprestimo)" ion-button large item-end clear color="corEmprestimo"
+          (click)="aceitaDivEmp(emprestimo)">
+          <ion-icon name="checkmark" color="corPrimaria"></ion-icon>
+        </button>
+        <button *ngIf="podeAnalisarEmprestimo(emprestimo)" ion-button large item-end clear color="corEmprestimo"
+          (click)="rejeitaEmprestimo(emprestimo)">
+          <ion-icon name="close" color="corDivida"></ion-icon>
+        </button>
+        <button *ngIf="!podeAnalisarEmprestimo(emprestimo)" ion-button large item-end clear color="corEmprestimo"
+          (click)="modalMostraEmprestimo(emprestimo)">
+          <ion-icon name="list"></ion-icon>
+        </button>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+
+  <ion-card *ngIf="existeDividasPendentes()">
+    <ion-card-header color="corDividaPendente">
+      Dívidas Pendentes
+    </ion-card-header>
+    <ion-list *ngFor="let divida of dividasPendentes">
+      <hr>
+      <ion-item>
+        <ion-avatar item-start>
+          <img [src]="retornaFoto('divida', divida)">
+        </ion-avatar>
+        <h2>{{divida.nomeUsuarioEmprestador}}</h2>
+        <p class="precoDivida">R$ {{formataValor(divida.valor)}}</p>
+        <button *ngIf="podeAnalisarDivida(divida)" ion-button large item-end clear color="corDivida" (click)="aceitaDivEmp(divida)">
+          <ion-icon name="checkmark" color="corPrimaria"></ion-icon>
+        </button>
+        <button *ngIf="podeAnalisarDivida(divida)" ion-button large item-end clear color="corDivida" (click)="rejeitaDivida(divida)">
+          <ion-icon name="close" color="corDivida"></ion-icon>
+        </button>
+        <button *ngIf="!podeAnalisarDivida(divida)" ion-button large item-end clear color="corDivida" (click)="modalMostraDivida(divida)">
+          <ion-icon name="list"></ion-icon>
+        </button>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <ion-list>
+    <ion-card>
+      <ion-card-header color="corEmprestimo">
+        Empréstimos
+        <p *ngIf="existeEmprestimo()" class="totalEmprestimo">Total: R$ {{formataValor(retornaSoma(emprestimos))}}</p>
+      </ion-card-header>
+
+      <ion-item *ngIf="!existeEmprestimo()">
+        <p style="white-space: normal;" text-center>Não há nenhum empréstimo aberto.</p>
+      </ion-item>
+
+      <ion-list *ngFor="let emprestimo of emprestimos">
+        <hr>
+        <ion-item>
+          <div id="nome" item-start></div>
+          <ion-avatar item-start>
+            <img [src]="retornaFoto('emprestimo', emprestimo)">
+          </ion-avatar>
+          <h2>{{emprestimo.nomeUsuarioDevedor}}</h2>
+          <p class="precoEmprestimo">R$ {{formataValor(emprestimo.valor)}}</p>
+          <button ion-button color="corEmprestimo" clear item-end (click)="modalMostraEmprestimo(emprestimo)">Detalhes</button>
+        </ion-item>
+      </ion-list>
+
+    </ion-card>
+  </ion-list>
+
+  <ion-list>
+    <ion-card>
+      <ion-card-header color="corDivida">
+        Dívidas
+        <p *ngIf="existeDivida()" class="totalDivida">Total: R$ {{formataValor(retornaSoma(dividas))}}</p>
+      </ion-card-header>
+
+      <ion-item *ngIf="!existeDivida()">
+        <p style="white-space: normal;" text-center>Não há nenhuma dívida aberta.</p>
+      </ion-item>
+
+      <ion-list *ngFor="let divida of dividas">
+        <hr>
+        <ion-item>
+          <div id="nome" item-start></div>
+          <ion-avatar item-start>
+            <img [src]="retornaFoto('divida', divida)">
+          </ion-avatar>
+          <h2>{{divida.nomeUsuarioEmprestador}}</h2>
+          <p class="precoDivida">R$ {{formataValor(divida.valor)}}</p>
+          <button ion-button color="corDivida" clear item-end (click)="modalMostraDivida(divida)">Detalhes</button>
+        </ion-item>
+      </ion-list>
+
+    </ion-card>
+  </ion-list>
+
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <ion-fab bottom right #fab>
+    <button ion-fab color="corPrimaria">
+      <ion-icon name="add"></ion-icon>
+    </button>
+    <ion-fab-list side="top">
+      <button ion-fab (click)="modalAdicionaDivida()" color="corDivida">
+        <ion-icon name="cash" color="light"></ion-icon>
+        <ion-label>Dívida</ion-label>
+      </button>
+      <button ion-fab (click)="modalAdicionaEmprestimo()" color="corEmprestimo">
+        <ion-icon name="cash" color="light"></ion-icon>
+        <ion-label>Empréstimo</ion-label>
+      </button>
+    </ion-fab-list>
+
+  </ion-fab>
+
+</ion-content>

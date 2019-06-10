@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-navbar color="corEmprestimo">
+    <ion-title>Novo empréstimo</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="cor-background">
+  <ion-card>
+    <ion-card-header color="corEmprestimo">
+      Seu devedor
+    </ion-card-header>
+
+    <ion-list radio-group [(ngModel)]="usuarioUsaAplicativo">
+      <ion-item>
+        <ion-icon name='contact' item-start color="corEmprestimo"></ion-icon>
+        <ion-label>Meu devedor possui conta</ion-label>
+        <ion-radio value="possui"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-icon name='contacts' item-start color="corEmprestimo"></ion-icon>
+        <ion-label>Meu devedor não possui conta</ion-label>
+        <ion-radio value="nao_possui"></ion-radio>
+      </ion-item>
+    </ion-list>
+    <ion-item *ngIf="usuarioNaoMarcouOpcao">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Selecione uma das opções acima.</p>
+    </ion-item>
+
+    <ion-item *ngIf="!usuarioPossuiConta()">
+      <ion-icon name='person' item-start color="corEmprestimo"></ion-icon>
+      <ion-input type="text" placeholder="Nome" [(ngModel)]="emprestimo.nomeUsuarioDevedor"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!usuarioPossuiConta() && nomeVazio && usuarioNaoEncontrado">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Digite o nome do devedor.</p>
+    </ion-item>
+
+    <ion-item *ngIf="usuarioPossuiConta()">
+      <ion-icon name='contact' item-start color="corEmprestimo"></ion-icon>
+      <ion-input type="text" [(ngModel)]="emprestimo.usuarioDevedor" placeholder="Usuário"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="usuarioPossuiConta() && usuarioInvalido">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Digite o usuário devedor.</p>
+    </ion-item>
+
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header color="corEmprestimo">
+      Informações do empréstimo
+    </ion-card-header>
+
+    <ion-item>
+      <ion-icon name='clipboard' item-start color="corEmprestimo"></ion-icon>
+      <ion-input type="text" [(ngModel)]="emprestimo.descricao" placeholder="Descrição"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="descricaoVazia">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Digite a descrição.</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name='cash' item-start color="corEmprestimo"></ion-icon>
+      <ion-input type="text" name="money" placeholder="Valor" [brmasker]="{money: true, thousand: '.',  decimalCaracter: ',', len:11}"
+        [(ngModel)]="emprestimo.valor"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="valorInvalido">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">O valor deverá ser maior que zero.</p>
+    </ion-item>
+    <ion-item *ngIf="valorVazio">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Digite o valor.</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name='calendar' item-start color="corEmprestimo"></ion-icon>
+      <ion-datetime cancelText="Cancelar" doneText="Ok" min="2017" max="2020" displayFormat="DD/MM/YYYY" [(ngModel)]="data"
+        placeholder="Data"></ion-datetime>
+    </ion-item>
+    <ion-item *ngIf="dataVazia">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Selecione a data.</p>
+    </ion-item>
+
+  </ion-card>
+
+  <ion-fab bottom right>
+    <button ion-fab (click)="adicionaEmprestimo()" color="corEmprestimo">
+      <ion-icon name="checkmark"></ion-icon>
+    </button>
+  </ion-fab>
+
+</ion-content>

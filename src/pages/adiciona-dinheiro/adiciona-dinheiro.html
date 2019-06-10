@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-navbar color="corPrimaria">
+    <ion-title>Adicionar dinheiro na carteira</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="cor-background">
+  <ion-card>
+    <ion-card-header color="corPrimaria">
+      Valor
+    </ion-card-header>
+
+    <ion-item>
+      <ion-icon name='cash' item-start color="corPrimaria"></ion-icon>
+      <ion-input type="text" placeholder="Valor" [(ngModel)]="dinheiro.valor"
+        [brmasker]="{money: true, thousand: '.',  decimalCaracter: ',', len: 11}">
+      </ion-input>
+    </ion-item>
+    <ion-item *ngIf="valorVazio">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Digite o valor.</p>
+    </ion-item>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header color="corPrimaria">
+      Cartão de Crédito
+    </ion-card-header>
+
+    <ion-item>
+      <ion-icon name='contact' item-start color="corPrimaria"></ion-icon>
+      <ion-input type="text" [(ngModel)]="cartao.nomeTitular" placeholder="Nome do Titular"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="nomeTitularVazio">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Digite o nome do titular.</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name='finger-print' item-start color="corPrimaria"></ion-icon>
+      <ion-input type="text" [(ngModel)]="cartao.numeroCartao" placeholder="Número do Cartão"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="numeroCartaoVazio">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Digite o número do cartão.</p>
+    </ion-item>
+    <ion-item *ngIf="numeroCartaoInvalido">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Digite um número de cartão válido.</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name='calendar' item-start color="corPrimaria"></ion-icon>
+      <ion-datetime placeholder="Data de Vencimento" cancelText="Cancelar" doneText="Ok" min="2017" max="2020" displayFormat="MM/YYYY" [(ngModel)]="cartao.dataVencimento">
+      </ion-datetime>
+    </ion-item>
+    <ion-item *ngIf="dataVencimentoVazia">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Selecione a data de vencimento.</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name='eye-off' item-start color="corPrimaria"></ion-icon>
+      <ion-input type="text" [(ngModel)]="cartao.codigoSeguranca" placeholder="Código de Segurança"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="codigoSegurancaVazio">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Digite o código de segurança.</p>
+    </ion-item>
+    <ion-item *ngIf="codigoSegurancaInvalido">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Digite um código de segurança válido.</p>
+    </ion-item>
+  </ion-card>
+
+  <ion-fab bottom right>
+    <button ion-fab (click)="adicionaDinheiro()" color="corPrimaria">
+      <ion-icon name="checkmark"></ion-icon>
+    </button>
+  </ion-fab>
+
+</ion-content>

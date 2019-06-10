@@ -1,0 +1,15 @@
+<ion-card>
+  <ion-card-content class="item-card__content">
+    <ion-icon class="icon" name="{{icon}}" color="{{iconColor}}"></ion-icon>
+    <h4 class="description">{{description}}</h4>
+    <p class="subtitle" ngClass="{{subtitleClass}}">{{subtitle}}</p>
+    <p class="second-subtitle">{{secSubtitle}}</p>
+  </ion-card-content>
+  <div class="btns">
+    <button *ngFor="let btn of btns; trackBy: trackById" ion-button clear class="item-card__btn"
+      color="{{btn.color}}" (click)="btn.action()">
+      <ion-icon name="{{btn.icon}}"></ion-icon>
+      <span>{{btn.title}}</span>
+    </button>
+  </div>
+</ion-card>

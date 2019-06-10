@@ -1,0 +1,42 @@
+
+item-card .item-card__content {
+    padding: 13px 8px;
+    display: grid;
+    grid-template-rows: 2fr 1fr 1fr;
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas: 
+        "icon desc"
+        "icon sub"
+        "icon secsub";
+}
+
+.item-card__content .icon {
+    grid-area: icon;
+    justify-self: center;
+    align-self: center;
+    font-size: 3em;
+}
+
+.description {
+    grid-area: desc;
+    align-self: center;
+}
+
+.subtitle {
+    grid-area: sub;
+}
+
+.second-subtitle {
+    grid-area: secsub;
+}
+
+item-card .btns {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: 1fr;
+}
+
+.item-card__btn span {
+    margin-left: 4px;
+    text-transform: capitalize;
+}

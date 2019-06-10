@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar color="corPrimaria">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Estatísticas</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="cor-background">
+      <ion-item class="cor-background">
+          <p text-center style="font-size:  2rem;font-weight: 500;">Bem vindo de volta, {{ usuario.nome }}!</p>
+        </ion-item>
+
+        <ion-card *ngIf="mostrarGrafico">
+            <ion-card-header color="corPrimaria">
+              Gastos mensais
+            </ion-card-header>
+              <ion-item>
+                  <canvas baseChart 
+                  [data]="doughnutData"
+                  [labels]="doughnutCategorias"
+                  [options]="doughnutOptions"
+                  chartType="doughnut"></canvas>
+                  </ion-item>
+          </ion-card>
+
+          <ion-card *ngIf="mostrarGrafico">
+              <ion-card-header color="corPrimaria">
+                Débitos e créditos por mês
+              </ion-card-header>
+                <ion-item>
+                    <canvas baseChart
+                    height="200px"
+                    [datasets]="barChartData"
+                    [labels]="barChartLabels"
+                    [options]="barOptions"
+                    chartType="bar"></canvas>
+                    </ion-item>
+            </ion-card>
+
+</ion-content>

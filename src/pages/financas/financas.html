@@ -1,0 +1,134 @@
+<ion-header>
+  <ion-navbar color="corPrimaria">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Finanças</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="cor-background">
+
+  <button padding ion-button clear icon-start color="corPrimaria" *ngIf="selecionouFinancasGerais" (click)="financasGerais('nao')">
+    <ion-icon color="corPrimaria" name="arrow-dropleft"></ion-icon>
+    Ver finanças do mês atual
+  </button>
+
+  <ion-list *ngIf="existeMeta()">
+    <ion-card>
+      <ion-card-header color="corMeta">
+        Suas metas
+      </ion-card-header>
+
+      <ion-list>
+        <item-card *ngFor="let meta of metas; trackBy: trackById"
+          icon="{{getIcon(meta.categoria)}}" iconColor="corPrimaria"
+          description="Limite de R$ {{formataValor(meta.limite)}}" 
+          subtitle="{{retornaPorcentagemMeta(meta)}}% gasto"
+          subtitleClass="{{getMetaProgressClass(meta)}}"
+          secSubtitle="Total: R$ {{formataValor(retornaTotalMeta(meta))}}"
+          [btns]="getMetaBtns(meta)">
+        </item-card>
+      </ion-list>
+    </ion-card>
+  </ion-list>
+
+  <ion-list *ngIf="existeFinancaPendente()">
+    <ion-card>
+      <ion-card-header color="corMeta">
+        Finanças Pendentes
+      </ion-card-header>
+
+      <ion-list>
+        <item-card *ngFor="let financa of financasPendentes; trackBy: trackById"
+          icon="{{getIcon(financa.categoria)}}" iconColor="corPrimaria"
+          description="{{financa.descricao}}" 
+          subtitle="R$ {{formataValor(financa.valor)}}"
+          subtitleClass="{{financa.ehDebito ? 'financaDebito':'financaCredito'}}"
+          secSubtitle="{{getTextoData(financa)}}"
+          [btns]="getFinancaPendBtns(financa)">
+        </item-card>
+      </ion-list>
+    </ion-card>
+  </ion-list>
+
+  <ion-list *ngIf="!selecionouFinancasGerais">
+    <ion-card>
+      <ion-card-header color="corPrimaria" class="item-text-wrap">
+        Finanças de {{retornaNomeMes()}}
+        <p *ngIf="existeFinanca()" class="totalDebito">Total gasto: R$ {{retornaSomaDebito(financas)}}</p>
+        <p> <br> </p>
+        <p *ngIf="existeFinanca()" class="totalCredito">Total recebido: R$ {{retornaSomaCredito(financas)}}</p>
+      </ion-card-header>
+
+      <ion-item *ngIf="!existeFinanca()">
+        <p style="white-space: normal;" text-center>Não há nenhuma finança registrada.</p>
+      </ion-item>
+
+      <ion-list>
+        <item-card *ngFor="let financa of financas; trackBy: trackById"
+          icon="{{getIcon(financa.categoria)}}" iconColor="corPrimaria"
+          description="{{financa.descricao}}" 
+          subtitle="R$ {{formataValor(financa.valor)}}"
+          subtitleClass="{{financa.ehDebito ? 'financaDebito':'financaCredito'}}"
+          secSubtitle="{{getTextoData(financa)}}"
+          [btns]="getFinancaBtns(financa)">
+        </item-card>
+      </ion-list>
+    </ion-card>
+  </ion-list>
+
+  <ion-list *ngIf="selecionouFinancasGerais">
+    <ion-card>
+      <ion-card-header color="corPrimaria">
+        Finanças gerais
+        <p *ngIf="existeFinanca()" class="totalDebito">Total gasto: R$ {{retornaSomaDebito(financas)}}</p>
+        <p> </p>
+        <p *ngIf="existeFinanca()" class="totalCredito">Total recebido: R$ {{retornaSomaCredito(financas)}}</p>
+      </ion-card-header>
+
+      <ion-item *ngIf="!existeFinanca()">
+        <p style="white-space: normal;" text-center>Não há nenhuma finança registrada.</p>
+      </ion-item>
+      
+      <ion-list>
+        <item-card *ngFor="let financa of financas; trackBy: trackById"
+          icon="{{getIcon(financa.categoria)}}" iconColor="corPrimaria"
+          description="{{financa.descricao}}" 
+          subtitle="R$ {{formataValor(financa.valor)}}"
+          subtitleClass="{{financa.ehDebito ? 'financaDebito':'financaCredito'}}"
+          secSubtitle="{{getTextoData(financa)}}"
+          [btns]="getFinancaBtns(financa)">
+        </item-card>
+      </ion-list>
+    </ion-card>
+  </ion-list>
+
+  <button padding ion-button icon-right clear color="corPrimaria" *ngIf="!selecionouFinancasGerais" (click)="financasGerais('sim')">
+    <ion-icon color="corPrimaria" name="arrow-down"></ion-icon>
+    Ver todas
+  </button>
+
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <ion-fab bottom right #fab>
+    <button ion-fab color="corPrimaria">
+      <ion-icon name="add"></ion-icon>
+    </button>
+    <ion-fab-list side="top">
+      <button ion-fab (click)="modalAdicionaFinanca()" color="corPrimaria">
+        <ion-icon name="add" color="light"></ion-icon>
+        <ion-label>Registrar transação</ion-label>
+      </button>
+      <button ion-fab (click)="modalAdicionaMeta()" color="corMeta">
+        <ion-icon name="add" color="light"></ion-icon>
+        <ion-label>Adicionar meta de gastos</ion-label>
+      </button>
+    </ion-fab-list>
+
+  </ion-fab>
+
+</ion-content>

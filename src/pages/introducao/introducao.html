@@ -1,0 +1,129 @@
+<!--
+  Introdução ao Cadê Meu Dinheiro
+-->
+
+<ion-content class="corPrimaria" scroll>
+
+  <ion-slides #slides>
+
+    <ion-slide class="slide_image">
+      <img src="assets/imgs/app-branco.png" alt="">
+      <br>
+      <br>
+      <h2 class="textoIntro">Bem-vindo!</h2>
+      <div>
+        <p class="textoIntro">Iremos te ajudar a administrar sua vida financeira, mas antes deixe-nos ensinar você como nosso aplicativo funciona.</p>
+      </div>
+    </ion-slide>
+
+    <ion-slide class="slide_image">
+      <img src="assets/imgs/intro-financas.png" alt="">
+      <br>
+      <br>
+      <h2 class="textoIntro">Tenha controle de suas finanças</h2>
+      <div>
+        <p class="textoIntro">O Cadê Meu Dinheiro oferece a opção de você registrar suas finanças do mês para ter controle de 
+          seus ganhos e gastos. Registre todos os seus ganhos mensais, suas compras realizadas e a categoria de cada transação realizada.
+        </p>
+      </div>
+    </ion-slide>
+
+
+    <ion-slide class="slide_image">
+      <img src="assets/imgs/intro-estatisticas.png" alt="">
+      <br>
+      <br>
+      <h2 class="textoIntro">Veja as estatísticas de sua gestão financeira</h2>
+      <div>
+        <p class="textoIntro">Gosta de analisar a sua situação financeira atual? Nosso aplicativo irá te ajudar com isso! A partir de suas finanças, 
+          iremos te mostrar gráficos estatísticos úteis para você gerir melhor seu dinheiro.
+        </p>
+      </div>
+    </ion-slide>
+
+    <ion-slide class="slide_image">
+        <img src="assets/imgs/intro-metas.png" alt="">
+        <br>
+        <br>
+        <h2 class="textoIntro">Deseja não ultrapassar um determinado valor de gasto?</h2>
+        <div>
+          <p class="textoIntro">Você é aquele tipo de pessoa que não consegue resistir ao ver uma roupa na moda ou um sanduíche delicioso sem comprar?
+            O Cadê Meu Dinheiro oferece um sistema de controle de gastos baseado em metas. Sendo assim, iremos te notificar quando seu gasto atual em alguma categoria
+            como alimentação ou vestimentas estiverem próximos do limite.
+          </p>
+        </div>
+      </ion-slide>
+
+      <ion-slide class="slide_image">
+          <img src="assets/imgs/intro-divida.png" alt="">
+          <br>
+          <br>
+          <h2 class="textoIntro">Registre suas dívidas pendentes</h2>
+          <div>
+            <p class="textoIntro">Você tem dificuldade de lembrar que possui uma dívida com alguém? Basta registrar todos os seus detalhes no aplicativo!
+              Você também pode registrar o nome de algum outro usuário do Cadê Meu Dinheiro para poder marcar acordos de pagamento com ele e poder notificá-lo.
+            </p>
+          </div>
+        </ion-slide>
+    
+        <ion-slide class="slide_image">
+          <img src="assets/imgs/intro-emprestimo.png" alt="">
+          <br>
+          <br>
+          <h2 class="textoIntro">Registre seus empréstimos realizados</h2>
+          <div>
+            <p class="textoIntro">Você tem dificuldade de lembrar que emprestou dinheiro para alguém? Basta registrar todos os seus detalhes no aplicativo!
+                Você também pode registrar o nome de algum outro usuário do Cadê Meu Dinheiro para poder marcar acordos de recebimento com ele e poder notificá-lo.
+            </p>
+          </div>
+        </ion-slide>
+
+      <ion-slide class="slide_image">
+          <img src="assets/imgs/intro-coletivo.png" alt="">
+          <br>
+          <br>
+          <h2 class="textoIntro">Registre também seus pagamentos coletivos</h2>
+          <div>
+            <p class="textoIntro">Sabe quando você vai naquela pizzaria com os amigos e quer "rachar" a conta com eles? No Cadê Meu Dinheiro, você pode registrar pagamentos
+              compartilhados com amigos. Sendo assim, o aplicativo irá lembrá-los de efetuar o pagamento a você.
+            </p>
+          </div>
+        </ion-slide>
+
+        <ion-slide class="slide_image">
+            <img src="assets/imgs/intro-ativos.png" alt="">
+            <br>
+            <br>
+            <h2 class="textoIntro">Quer saber em que você pode investir?</h2>
+            <div>
+              <p class="textoIntro">Nosso aplicativo também informará a você sobre ativos financeiros, ou seja, onde você pode investir aquele restinho de dinheiro
+                que sobrou no seu mês.
+              </p>
+            </div>
+          </ion-slide>
+
+      <ion-slide class="slide_image">
+          <img src="assets/imgs/intro-fim.png" alt="">
+          <br>
+          <br>
+          <h2 class="textoIntro">Entendeu como funciona?</h2>
+          <div>
+              <button padding ion-button clear icon-start color="light" (click)="irParaLogin()">
+                  <ion-icon color="light" name="arrow-dropright-circle"></ion-icon>
+                  Vamos começar!
+                </button>
+          </div>
+        </ion-slide>  
+
+
+
+  </ion-slides>
+
+  <ion-item class="botoes_slide" color="corPrimaria">
+    <button type="submit" *ngIf="!ultimoSlide()" item-left ion-button clear color="light" class="btnPrev" (click)="avancaParaUltimo()">Pular</button>
+    <button type="submit" *ngIf="!ultimoSlide()" item-right ion-button clear color="light" class="btnNext" (click)="avancaSlide()">Próximo</button>
+    <button type="submit" *ngIf="ultimoSlide()" item-left ion-button clear color="light" class="btnPrev" (click)="retornaSlide()">Voltar</button>
+  </ion-item>
+
+
+</ion-content>

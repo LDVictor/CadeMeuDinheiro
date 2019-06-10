@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-navbar color="corPrimaria">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Detalhes</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="cor-background">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+      </ion-col>
+      <ion-col col-9 text-center>
+        <img class="image_circle" width="150" height="150" [src]="retornaFoto(amigo)">
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-item class="cor-background">
+      <p text-center style="font-size:  2rem;font-weight: 500;">{{amigo.nome}}</p>
+    </ion-item>
+
+    <ion-card>
+        <ion-card-header color="corPrimaria">
+          Informações
+        </ion-card-header>
+        <ion-item>
+            <ion-icon name='contact' item-start color="corPrimaria"></ion-icon>
+            <h2>Nome de Usuário</h2>
+            <p>{{amigo.username}}</p>
+        </ion-item>
+        <ion-item>
+            <ion-icon name='briefcase' item-start color="corPrimaria"></ion-icon>
+            <h2>Profissão</h2>
+            <p>{{amigo.profissao}}</p>
+        </ion-item>
+      </ion-card>
+    
+    <ion-card>
+        <ion-card-header color="corPrimaria">
+         Comparativo
+        </ion-card-header>
+          <ion-item *ngIf="!gastouMais">
+              <ion-icon name='arrow-up' item-start color="corEmprestimo"></ion-icon>
+              <p>Você gastou R$ {{formataValor(diferencaGasto())}} a menos</p>
+              <p>que seu amigo no mês atual</p>
+            </ion-item>
+            <ion-item *ngIf="gastouMais">
+              <ion-icon name='arrow-down' item-start color="corDivida"></ion-icon>
+              <p>Você gastou R$ {{formataValor(diferencaGasto())}} a mais</p>
+              <p>que seu amigo no mês atual</p>
+            </ion-item>
+            <ion-item>
+                <ion-icon name='logo-usd' item-start color="corPrimaria"></ion-icon>
+                <p>A categoria que você mais gastou foi</p>
+                <p>{{categoriaComMaisGastos(this.financas)}}</p>
+            </ion-item>
+            <ion-item>
+                <ion-icon name='logo-usd' item-start color="corMeta"></ion-icon>
+                <p>A categoria que seu amigo mais gastou foi</p>
+                <p>{{categoriaComMaisGastos(this.financasDoAmigo)}}</p>
+            </ion-item>
+      </ion-card>
+</ion-content>

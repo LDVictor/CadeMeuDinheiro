@@ -1,0 +1,63 @@
+page-home {
+
+
+      .corPrimaria{
+            color:green;
+      }
+
+      .precoEmprestimo {
+          padding-left: 0px;
+          color: darkblue;
+          font-weight: 500;
+      }
+
+      .precoDivida {
+          padding-left: 0px;
+          color: red;
+          font-weight: 500;
+      }
+
+      .totalEmprestimo {
+        float: right;
+        color: darkblue;
+        font-weight: 500;
+      }
+
+      .totalDivida {
+        float: right;
+        color: red;
+        font-weight: 500;
+      }
+
+      .corSecundaria{
+            color:grey;
+      }
+
+      button[ion-fab] {
+            overflow: visible;
+            position: relative;
+
+            ion-label {
+                position: absolute;
+                top: -8px;
+                right: 40px;
+                color: white;
+                background-color: green;
+                line-height: 24px;
+                padding: 4px 8px;
+                border-radius: 12px;
+            }
+          }
+
+          .blur {
+            filter: blur(300px);
+            -webkit-filter: blur(300px);
+            transition: -webkit-filter 200ms linear;
+          }
+
+          .fab {
+            contain: layout;
+          }
+
+
+}
