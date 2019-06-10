@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-navbar color="corPrimaria">
+    <ion-title>Transferir para conta</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="cor-background">
+  <ion-card>
+    <ion-card-header color="corPrimaria">
+      Valor
+    </ion-card-header>
+
+    <ion-item>
+      <ion-icon name='cash' item-start color="corPrimaria"></ion-icon>
+      <ion-input type="text" placeholder="Valor" [(ngModel)]="valor">
+      </ion-input>
+    </ion-item>
+    <ion-item *ngIf="valorVazio">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Digite o valor que você quer transferir.</p>
+    </ion-item>
+    <ion-item *ngIf="valorNegativo">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Digite um valor maior que zero.</p>
+    </ion-item>
+    <ion-item *ngIf="valorMaiorQueCarteira">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Digite um valor menor ou igual à carteira.</p>
+    </ion-item>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header color="corPrimaria">
+      Dados da Conta
+    </ion-card-header>
+
+    <ion-item>
+      <ion-icon name='globe' item-start color="corPrimaria"></ion-icon>
+      <ion-input type="text" [(ngModel)]="codigoBanco" placeholder="Código do Banco"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="codigoBancoVazio">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Digite o código do banco.</p>
+    </ion-item>
+    <ion-item *ngIf="codigoBancoInvalido">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Digite um código de banco válido.</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name='desktop' item-start color="corPrimaria"></ion-icon>
+      <ion-input type="text" [(ngModel)]="numeroAgencia" placeholder="Número da Agência"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="numeroAgenciaVazio">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Digite o número da agência.</p>
+    </ion-item>
+    <ion-item *ngIf="numeroAgenciaInvalido">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Digite um número de agência válido.</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name='briefcase' item-start color="corPrimaria"></ion-icon>
+      <ion-input type="text" [(ngModel)]="numeroConta" placeholder="Número da Conta"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="numeroContaVazio">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Digite o número da conta.</p>
+    </ion-item>
+    <ion-item *ngIf="numeroContaInvalido">
+      <ion-icon name="information-circle" color="grey" item-start></ion-icon>
+      <p class="erro">Digite um número de conta válido.</p>
+    </ion-item>
+  </ion-card>
+
+  <ion-fab bottom right>
+    <button ion-fab (click)="retiraDinheiro()" color="corPrimaria">
+      <ion-icon name="checkmark"></ion-icon>
+    </button>
+  </ion-fab>
+
+</ion-content>

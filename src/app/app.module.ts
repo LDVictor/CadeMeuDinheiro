@@ -71,6 +71,7 @@ import { EditaPerfilPage } from '../pages/edita-perfil/edita-perfil';
 import { AdicionaDinheiroPageModule } from '../pages/adiciona-dinheiro/adiciona-dinheiro.module';
 import { RealizaPagamentoPageModule } from '../pages/realiza-pagamento/realiza-pagamento.module';
 import { ComponentsModule } from '../components/components.module';
+import { RetiraDinheiroPageModule } from '../pages/retira-dinheiro/retira-dinheiro.module';
 
 @NgModule({
   declarations: [
@@ -129,6 +130,7 @@ import { ComponentsModule } from '../components/components.module';
     IonicPageModule.forChild(DetalhesAmigosPage),
     IonicPageModule.forChild(ChatRoomPage),
     AdicionaDinheiroPageModule,
+    RetiraDinheiroPageModule,
     RealizaPagamentoPageModule,
     ComponentsModule
     ],

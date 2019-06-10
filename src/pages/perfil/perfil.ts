@@ -6,6 +6,7 @@ import { Usuario } from '../../models/usuario';
 import { DividaServiceProvider } from '../../providers/divida-service/divida-service';
 import { Divida } from '../../models/divida';
 import { AdicionaDinheiroPage } from '../adiciona-dinheiro/adiciona-dinheiro';
+import { RetiraDinheiroPage } from '../retira-dinheiro/retira-dinheiro';
 
 @Component({
   selector: 'page-perfil',
@@ -76,6 +77,10 @@ export class PerfilPage {
 
   modalAdicionaDinheiro() {
     this.navCtrl.push(AdicionaDinheiroPage, this.usuario);
+  }
+
+  modalRetiraDinheiro() {
+    this.navCtrl.push(RetiraDinheiroPage, this.usuario);
   }
 
   formataValor(valor: number) {

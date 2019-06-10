@@ -21,10 +21,24 @@
       </ion-grid>
 
       <ion-item class="cor-background">
-          <p text-center style="font-size:  2rem;font-weight: 500;">{{ usuario?.nome }}</p>
-          <p text-center style="font-size:  2rem;font-weight: 250;" color="corPrimaria">Carteira: R$ {{formataValor(usuario.carteira)}}  
-            <ion-icon name='add' item-start color="corPrimaria" (click)="modalAdicionaDinheiro()"></ion-icon></p>   
-        </ion-item>
+        <p text-center style="font-size:  2rem;font-weight: 500;">{{ usuario?.nome }}</p>
+        <p text-center style="font-size:  2rem;font-weight: 250;" color="corPrimaria">Carteira: R$
+          {{formataValor(usuario.carteira)}}
+        </p>
+        <ion-row>
+          <ion-col width-50 style="text-align: center">
+        <button padding icon-start ion-button round color="corPrimaria" (click)="modalAdicionaDinheiro()">
+          <ion-icon name="cash"></ion-icon>
+          Adicionar
+        </button>
+        <button padding icon-start ion-button round color="corPrimaria" (click)="modalRetiraDinheiro()">
+          <ion-icon name="mail-open"></ion-icon>
+          Retirar
+        </button>
+        </ion-col>
+        </ion-row>
+      </ion-item>
+
 
   <ion-card>
     <ion-card-header color="corPrimaria">
